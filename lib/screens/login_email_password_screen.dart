@@ -24,7 +24,7 @@ class _LoginEmailPasswordScreenState extends State<LoginEmailPasswordScreen> {
     passwordController.dispose();
   }
 
-  void signUpUser() async {
+  void loginUser() async {
     if (emailController.text == '' || passwordController.text == '') {
       showSnackBar(context, 'Email and password is required');
     } else {
@@ -83,7 +83,7 @@ class _LoginEmailPasswordScreenState extends State<LoginEmailPasswordScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueAccent,
               ),
-              onPressed: signUpUser,
+              onPressed: loginUser,
               child: const Text(
                 'Login',
                 style: TextStyle(

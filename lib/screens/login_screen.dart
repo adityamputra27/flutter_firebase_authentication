@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_authentication/screens/login_email_password_screen.dart';
 import 'package:flutter_firebase_authentication/screens/signup_email_password_screen.dart';
 import 'package:flutter_firebase_authentication/widgets/custom_button.dart';
 
@@ -22,7 +23,10 @@ class LoginScreen extends StatelessWidget {
             ),
             CustomButton(
               text: 'Email/Password Login',
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                    context, LoginEmailPasswordScreen.routeName);
+              },
             ),
             CustomButton(
               text: 'Phone Sign In',

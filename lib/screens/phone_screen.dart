@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:flutter_firebase_authentication/widgets/custom_button.dart';
 import 'package:flutter_firebase_authentication/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
 class PhoneScreen extends StatefulWidget {
   static String routeName = '/phone-signup';
@@ -22,10 +23,10 @@ class _PhoneScreenState extends State<PhoneScreen> {
   }
 
   void phoneSignIn() {
-    FirebaseAuthMethods(FirebaseAuth.instance).phoneSign(
-      context,
-      phoneController.text,
-    );
+    context.read<FirebaseAuthMethods>().phoneSign(
+          context,
+          phoneController.text,
+        );
   }
 
   @override

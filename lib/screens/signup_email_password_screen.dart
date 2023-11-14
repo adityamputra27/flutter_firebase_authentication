@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:flutter_firebase_authentication/utils/showSnackBar.dart';
 import 'package:flutter_firebase_authentication/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
 class SignEmailPasswordScreen extends StatefulWidget {
   static String routeName = '/signup-email-password';
@@ -28,11 +29,11 @@ class _SignEmailPasswordScreenState extends State<SignEmailPasswordScreen> {
     if (emailController.text == '' || passwordController.text == '') {
       showSnackBar(context, 'Email and password is required');
     } else {
-      await FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
-        email: emailController.text,
-        password: passwordController.text,
-        context: context,
-      );
+      context.read<FirebaseAuthMethods>().signUpWithEmail(
+            email: emailController.text,
+            password: passwordController.text,
+            context: context,
+          );
     }
   }
 

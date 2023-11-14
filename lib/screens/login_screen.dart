@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_authentication/screens/login_email_password_screen.dart';
 import 'package:flutter_firebase_authentication/screens/phone_screen.dart';
 import 'package:flutter_firebase_authentication/screens/signup_email_password_screen.dart';
+import 'package:flutter_firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:flutter_firebase_authentication/widgets/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -37,7 +39,10 @@ class LoginScreen extends StatelessWidget {
             ),
             CustomButton(
               text: 'Google Sign In',
-              onTap: () {},
+              onTap: () {
+                FirebaseAuthMethods(FirebaseAuth.instance)
+                    .signInWithGoogle(context);
+              },
             ),
             CustomButton(
               text: 'Facebook Sign In',

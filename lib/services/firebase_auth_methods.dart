@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_firebase_authentication/utils/showOTPDialog.dart';
 import 'package:flutter_firebase_authentication/utils/showSnackBar.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthMethods {
   final FirebaseAuth _auth;
@@ -44,6 +46,40 @@ class FirebaseAuthMethods {
     try {
       _auth.currentUser!.sendEmailVerification();
       showSnackBar(context, 'Email verification sent!');
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
+  // GOOGLE SIGN IN
+  Future<void> signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+      if (googleAuth?.idToken != null && googleAuth?.accessToken != null) {
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+        UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+        if (userCredential.user != null) {
+          if (userCredential.additionalUserInfo!.isNewUser) {}
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
+  // FACEBOOK LOGIN
+  Future<void> signInWithFacebook(BuildContext context) async {
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      await _auth.signInWithCredential(facebookAuthCredential);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }

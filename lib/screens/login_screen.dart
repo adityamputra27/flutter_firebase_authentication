@@ -46,7 +46,10 @@ class LoginScreen extends StatelessWidget {
             ),
             CustomButton(
               text: 'Facebook Sign In',
-              onTap: () {},
+              onTap: () {
+                FirebaseAuthMethods(FirebaseAuth.instance)
+                    .signInWithFacebook(context);
+              },
             ),
             CustomButton(
               text: 'Anonymous Sign In',

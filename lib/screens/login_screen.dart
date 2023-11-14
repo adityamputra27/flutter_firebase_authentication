@@ -53,7 +53,10 @@ class LoginScreen extends StatelessWidget {
             ),
             CustomButton(
               text: 'Anonymous Sign In',
-              onTap: () {},
+              onTap: () {
+                FirebaseAuthMethods(FirebaseAuth.instance)
+                    .signInAnonymously(context);
+              },
             ),
           ],
         ),

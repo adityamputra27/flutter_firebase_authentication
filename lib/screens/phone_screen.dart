@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:flutter_firebase_authentication/widgets/custom_button.dart';

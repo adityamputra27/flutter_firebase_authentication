@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_firebase_authentication/screens/home_screen.dart';
 import 'package:flutter_firebase_authentication/utils/showOTPDialog.dart';
 import 'package:flutter_firebase_authentication/utils/showSnackBar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -124,6 +125,14 @@ class FirebaseAuthMethods {
               smsCode: codeController.text.trim(),
             );
             await _auth.signInWithCredential(credential);
+            if (_auth.currentUser != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
+            }
             Navigator.pop(context);
           },
         );

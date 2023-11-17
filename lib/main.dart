@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_authentication/firebase_options.dart';
+import 'package:flutter_firebase_authentication/screens/forgot_password_screen.dart';
 import 'package:flutter_firebase_authentication/screens/home_screen.dart';
 import 'package:flutter_firebase_authentication/screens/login_email_password_screen.dart';
 import 'package:flutter_firebase_authentication/screens/login_screen.dart';
@@ -44,6 +45,8 @@ class MyApp extends StatelessWidget {
           LoginEmailPasswordScreen.routeName: (context) =>
               const LoginEmailPasswordScreen(),
           PhoneScreen.routeName: (context) => const PhoneScreen(),
+          ForgotPasswordScreen.routeName: (context) =>
+              const ForgotPasswordScreen(),
         },
       ),
     );

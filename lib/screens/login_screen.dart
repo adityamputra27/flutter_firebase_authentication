@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_authentication/screens/forgot_password_screen.dart';
 import 'package:flutter_firebase_authentication/screens/login_email_password_screen.dart';
 import 'package:flutter_firebase_authentication/screens/phone_screen.dart';
 import 'package:flutter_firebase_authentication/screens/signup_email_password_screen.dart';
@@ -29,6 +30,12 @@ class LoginScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                     context, LoginEmailPasswordScreen.routeName);
+              },
+            ),
+            CustomButton(
+              text: 'Forgot Password',
+              onTap: () {
+                Navigator.pushNamed(context, ForgotPasswordScreen.routeName);
               },
             ),
             CustomButton(

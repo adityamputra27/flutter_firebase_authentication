@@ -132,6 +132,26 @@ class FirebaseAuthMethods {
     );
   }
 
+  // FORGOT PASSWORD
+  Future<void> forgotPassword(
+      {required BuildContext context, required String email}) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      showSnackBar(context, 'Password Reset Email Sent!');
+
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
   // SIGN OUT
   Future<void> signOut(BuildContext context) async {
     try {
